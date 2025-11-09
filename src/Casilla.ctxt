@@ -2,10 +2,6 @@
 comment0.target=Casilla
 comment1.params=fila\ columna
 comment1.target=Casilla(int,\ int)
-comment10.params=
-comment10.target=boolean\ isBandera()
-comment11.params=bandera
-comment11.target=void\ setBandera(boolean)
 comment2.params=
 comment2.target=int\ getFila()
 comment3.params=
@@ -22,4 +18,4 @@ comment8.params=
 comment8.target=boolean\ isAbierta()
 comment9.params=abierta
 comment9.target=void\ setAbierta(boolean)
-numComments=12
+numComments=10

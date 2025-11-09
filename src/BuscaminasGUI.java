@@ -20,7 +20,7 @@ public class BuscaminasGUI extends JFrame {
 
     private void crearMenu() {
         JMenuBar menuBar = new JMenuBar();
-        JMenu menu = new JMenu("Juego");
+        JMenu menu = new JMenu("Nuevo Juego");
         JMenuItem nuevo = new JMenuItem("Nuevo Juego");
         nuevo.addActionListener(e -> nuevoJuego());
         menu.add(nuevo);
@@ -55,16 +55,9 @@ public class BuscaminasGUI extends JFrame {
                 JButton btn = new JButton();
                 final int fi = i, co = j;
                 btn.setFont(new Font("Arial", Font.BOLD, 16));
-                btn.addMouseListener(new MouseAdapter() {
-                    public void mouseClicked(MouseEvent e) {
-                        if (SwingUtilities.isRightMouseButton(e)) {
-                            juego.alternarBandera(fi,co);
-                            actualizarBoton(fi,co);
-                        } else {
-                            juego.revelarCasilla(fi,co);
-                            actualizarTablero();
-                        }
-                    }
+                btn.addActionListener(e -> {
+                    juego.revelarCasilla(fi, co);
+                    actualizarTablero();
                 });
                 botones[i][j] = btn;
                 panelTablero.add(btn);
@@ -86,7 +79,7 @@ public class BuscaminasGUI extends JFrame {
             else btn.setText(c.getMinasAlrededor() == 0 ? "" : String.valueOf(c.getMinasAlrededor()));
         } else {
             btn.setEnabled(true);
-            btn.setText(c.isBandera() ? "B" : "");
+            btn.setText("");
         }
     }
 

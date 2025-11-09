@@ -6,7 +6,6 @@ public class Casilla {
     private boolean mina;
     private int minasAlrededor;
     private boolean abierta;
-    private boolean bandera;
 
     public Casilla(int fila, int columna) {
         this.fila = fila;
@@ -14,7 +13,6 @@ public class Casilla {
         this.mina = false;
         this.minasAlrededor = 0;
         this.abierta = false;
-        this.bandera = false;
     }
 
     public int getFila() { return fila; }
@@ -25,7 +23,6 @@ public class Casilla {
     public void incrementarMinasAlrededor() { this.minasAlrededor++; }
     public boolean isAbierta() { return abierta; }
     public void setAbierta(boolean abierta) { this.abierta = abierta; }
-    public boolean isBandera() { return bandera; }
-    public void setBandera(boolean bandera) { this.bandera = bandera; }
 }
+
 

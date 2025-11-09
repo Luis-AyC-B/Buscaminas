@@ -61,18 +61,12 @@ public class Buscaminas {
     public void revelarCasilla(int fila, int col) {
         Casilla c = tablero[fila][col];
         if (!minasGeneradas) generarMinas(fila,col);
-        if (c.isAbierta() || c.isBandera()) return;
+        if (c.isAbierta()) return;
         c.setAbierta(true);
         if (c.isMina()) return;
         if (c.getMinasAlrededor() == 0) {
             for (Casilla ady : obtenerAlrededor(fila,col))
                 revelarCasilla(ady.getFila(), ady.getColumna());
         }
-    }
-
-    public void alternarBandera(int fila, int col) {
-        Casilla c = tablero[fila][col];
-        if (c.isAbierta()) return;
-        c.setBandera(!c.isBandera());
     }
 }
