@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Casilla
+comment1.params=fila\ columna
+comment1.target=Casilla(int,\ int)
+comment10.params=
+comment10.target=boolean\ isBandera()
+comment11.params=bandera
+comment11.target=void\ setBandera(boolean)
+comment2.params=
+comment2.target=int\ getFila()
+comment3.params=
+comment3.target=int\ getColumna()
+comment4.params=
+comment4.target=boolean\ isMina()
+comment5.params=mina
+comment5.target=void\ setMina(boolean)
+comment6.params=
+comment6.target=int\ getMinasAlrededor()
+comment7.params=
+comment7.target=void\ incrementarMinasAlrededor()
+comment8.params=
+comment8.target=boolean\ isAbierta()
+comment9.params=abierta
+comment9.target=void\ setAbierta(boolean)
+numComments=12
