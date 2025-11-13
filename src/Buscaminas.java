@@ -7,6 +7,7 @@ public class Buscaminas {
     private Casilla[][] tablero;
     private int filas, columnas, minas;
     private boolean minasGeneradas = false;
+    private boolean perdio = false;
 
     public Buscaminas(int filas, int columnas, int minas) {
         this.filas = filas;
@@ -20,6 +21,8 @@ public class Buscaminas {
         for (int i = 0; i < filas; i++)
             for (int j = 0; j < columnas; j++)
                 tablero[i][j] = new Casilla(i, j);
+        minasGeneradas = false;
+        perdio = false;
     }
 
     public Casilla[][] getTablero() {
@@ -40,7 +43,11 @@ public class Buscaminas {
         minasGeneradas = true;
     }
 
-    private void actualizarMinasAlrededor() {
+    public void actualizarMinasAlrededor() {
+        for (int i = 0; i < filas; i++)
+            for (int j = 0; j < columnas; j++)
+                tablero[i][j].minasAlrededor = 0;
+
         for (int i = 0; i < filas; i++)
             for (int j = 0; j < columnas; j++)
                 if (tablero[i][j].isMina()) {
@@ -61,12 +68,40 @@ public class Buscaminas {
     public void revelarCasilla(int fila, int col) {
         Casilla c = tablero[fila][col];
         if (!minasGeneradas) generarMinas(fila,col);
-        if (c.isAbierta()) return;
+        if (c.isAbierta() || c.isBandera()) return;
         c.setAbierta(true);
-        if (c.isMina()) return;
+        if (c.isMina()) {
+            perdio = true;
+            return;
+        }
         if (c.getMinasAlrededor() == 0) {
             for (Casilla ady : obtenerAlrededor(fila,col))
                 revelarCasilla(ady.getFila(), ady.getColumna());
         }
+    }
+
+    public void colocarBandera(int fila, int col) {
+        Casilla c = tablero[fila][col];
+        if (c.isAbierta()) return;
+        c.setBandera(!c.isBandera());
+    }
+
+    public boolean isPerdio() { return perdio; }
+
+    public boolean gano() {
+        for (int i = 0; i < filas; i++)
+            for (int j = 0; j < columnas; j++)
+                if (!tablero[i][j].isMina() && !tablero[i][j].isAbierta())
+                    return false;
+        return true;
+    }
+
+    public List<Casilla> obtenerCasillasConMinas() {
+        List<Casilla> res = new LinkedList<>();
+        for (int i = 0; i < filas; i++)
+            for (int j = 0; j < columnas; j++)
+                if (tablero[i][j].isMina())
+                    res.add(tablero[i][j]);
+        return res;
     }
 }
